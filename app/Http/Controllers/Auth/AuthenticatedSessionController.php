@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         } else if (auth()->user()->role == "superadmin") {
             return redirect()->guest("tenants");
         } else {
-            return redirect()->guest("dashboardusers");
+            return redirect()->guest("{$tenant->slug}/upravljačka-ploča-korisnici");
         }
     }
 
