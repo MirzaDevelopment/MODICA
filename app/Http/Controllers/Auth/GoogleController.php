@@ -18,7 +18,7 @@ class GoogleController extends Controller
     }
     public function handleGoogleCallback()
     {
-
+            dd("kita");
         $googleUser = Socialite::driver('google')->stateless()->user();
         // Find or create a user in your database
         $user = User::firstOrCreate([
@@ -33,6 +33,6 @@ class GoogleController extends Controller
         Auth::login($user, true);
 
         // Redirect to your desired location
-        return redirect()->route('dashboard'); // Change 'home' to your route
+        return redirect()->route('dashboardusers'); // Change 'home' to your route
     }
 }
