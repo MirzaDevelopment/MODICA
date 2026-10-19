@@ -1,7 +1,6 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <h1 class="text-lg text-center font-medium mt-6 mb-6 text-gray-700 leading-tight">Prijava</h1>
@@ -11,7 +10,6 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Lozinka')" />
@@ -36,9 +34,6 @@
             <x-primary-button>
                 {{ __('Prijavi se') }}
             </x-primary-button>
-
-
-
         </div>
     </form>
     <a href="{{ route('google.login') }}" wire:navigate>
@@ -57,7 +52,5 @@
         <a href="/registration" class="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
             Nemate račun? Započnite besplatno
         </a>
-
     </div>
-
 </x-guest-layout>
