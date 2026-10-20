@@ -21,6 +21,13 @@ class ProfileController extends Controller
         ]);
     }
 
+        public function superadminEdit(Request $request): View
+    {
+        return view('profile.superadminedit', [
+            'user' => $request->user(),
+        ]);
+    }
+
     /**
      * Update the user's profile information.
      */

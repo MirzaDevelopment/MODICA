@@ -47,7 +47,7 @@
                         <form method="POST" action="{{ route('logout')}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout',['tenant'=>Auth::user()->tenant()->first()->slug])" onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Odjava') }}
                             </x-dropdown-link>
@@ -71,7 +71,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard', ['tenant'=>'slug'])" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug])" :active="request()->routeIs('dashboard')">
                 {{ __('Administratorska ploča') }}
             </x-responsive-nav-link>
         </div>

@@ -24,7 +24,11 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-slate-100">
+        @if (Auth::user()->tenant()->first())
         @include('layouts.navigation')
+        @else
+        @include('layouts.navigationsuperadmin')
+        @endif
         <!-- Page Heading -->
         @if (isset($header))
         <header class="bg-white shadow">

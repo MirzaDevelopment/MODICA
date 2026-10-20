@@ -71,11 +71,9 @@ Route::get('/tenants', function () {
     return view('tenants');
 })->middleware(['auth', 'verified'])->name('tenants');
 
-//OVO RJEŠITI
-Route::get('superadmin-edit', function () {
-        /*Gate::authorize('view', Product::class); //Authorisation for admin
-        return view('editproduct');*/
-})->name('superadminedit');
+
+Route::get('superadmin-edit', [ProfileController::class, 'superadminEdit'])->name('profile.superadminedit');
+Route::delete('superadmin-delete', [ProfileController::class, 'superadminDelete'])->name('profile.superadmindestroy');
 
 
 /***Custom routes for tenants***/
@@ -153,7 +151,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('{tenant}/profil', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('profil', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('profil', [ProfileController::class, 'destroy'])->name('profile.destroy'); //OVO TESTIRATI
+    Route::delete('profil', [ProfileController::class, 'destroy'])->name('profile.destroy'); 
 });
 
 require __DIR__ . '/auth.php';
