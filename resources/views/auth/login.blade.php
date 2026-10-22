@@ -36,12 +36,6 @@
             </x-primary-button>
         </div>
     </form>
-    <a href="{{ route('google.login') }}" wire:navigate>
-        <button class="border m-auto px-2 py-1 flex border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-            <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
-            <span>Prijavi se sa Google</span>
-        </button>
-    </a>
     <div class="flex flex-col gap-2 items-center justify-center dark:bg-gray-800">
         @if (Route::has('password.request'))
         <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">

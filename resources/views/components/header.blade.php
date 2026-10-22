@@ -4,7 +4,7 @@
     <nav class="flex flex-row mt-[0.5rem] mb-[0.5rem]  2xl:mt-[0rem] 2xl:mb-[0rem] lg:flex-row-reverse flex-wrap" x-data="{ open: false }">
         <div class="lg:hidden">
             <img class="cursor-pointer lg:w-[100px]" src="{{ asset('storage/images/burger.svg') }}" alt="burger_menu" width="35" height="60" x-on:click="open = ! open" x-data="{ red: false }" x-bind:class="red ? ' bg-slate-100 text-white' : ''" @click="red = ! red">
-            <div class="flex flex-col gap-1 lg:gap-5 xl:gap-6 lg:mt-6  xl:mt-6 2xl:gap-8 mt-[1rem] 2xl:mt-12 2xl:mb-[1.5rem] " x-show="open" x-transition>
+            <div class="flex flex-col md:flex-row md:items-end gap-1 lg:gap-5 xl:gap-6 lg:mt-6  xl:mt-6 2xl:gap-8 mt-[1rem] 2xl:mt-12 2xl:mb-[1.5rem] " x-show="open" x-transition>
                 @if(Auth::user() && Auth::user()->role=="admin")
                 <div>
                     <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
@@ -72,6 +72,12 @@
                         <p>Korpa</p>
                     </div>
                 </div>
+                <a href="{{ route('google.login') }}" wire:navigate>
+                    <button class="border m-auto px-2 py-1 flex border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
+                        <img class="w-6 h-6" src="{{ asset('storage/images/google-login.svg') }}" loading="lazy" alt="google logo">
+                        <span>Prijavi se sa Google</span>
+                    </button>
+                </a>
                 @endif
             </div>
         </div>
@@ -125,6 +131,7 @@
                 </div>
                 @else
                 <div class="flex flex-col gap-[0.5rem] items-center">
+
                     <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('login') }}">
                             <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/loginicon.svg') }}" alt="messages_icon" width="25" height="25">
                         </a></div>
@@ -144,6 +151,16 @@
                     <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
                     <div>
                         <p>Korpa</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3">
+                        <a href="{{ route('google.login') }}" wire:navigate>
+                            <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/google-login.svg') }}" alt="google logo" width="25" height="25" loading="lazy">
+                        </a>
+                    </div>
+                    <div>
+                        <p>Prijavi se sa Google</p>
                     </div>
                 </div>
                 @endif
