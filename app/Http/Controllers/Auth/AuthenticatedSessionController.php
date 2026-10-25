@@ -16,8 +16,8 @@ class AuthenticatedSessionController extends Controller
      * Display the login view.
      */
     public function create(): View
-    {   
-        
+    {
+
         return view('auth.login');
     }
 
@@ -25,12 +25,12 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
-    {   
-       
+    {
+
         $request->authenticate();
         $tenant = auth()->user()->tenant()->first();
         $request->session()->regenerate();
-        if (auth()->user()->role == "admin" && $tenant!=null) {
+        if (auth()->user()->role == "admin" && $tenant != null) {
             return redirect()->guest("{$tenant->slug}/upravljačka-ploča");
             //return redirect(RouteServiceProvider::HOME);
         } else if (auth()->user()->role == "superadmin") {
@@ -45,14 +45,24 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        
+
         $tenant = auth()->user()->tenant()->first();
-        Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        return redirect("{$tenant->slug}/prodavnica");
+        if (auth()->user()->role == "admin" && $tenant != null) {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect("{$tenant->slug}/prodavnica");
+        } else if (auth()->user()->role == "superadmin" && $tenant == null) {
+             Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->guest("tenants");
+        } else {
+             Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->guest("{$tenant->slug}/upravljačka-ploča-korisnici");
+        }
     }
 }
