@@ -49,16 +49,19 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);
 
         $user = $request->user();
+        //Softdeleting tenant
+        $tenant=$request->user()->tenant()->first();
 
         Auth::logout();
 
         $user->delete();
-
+        $tenant->delete();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
