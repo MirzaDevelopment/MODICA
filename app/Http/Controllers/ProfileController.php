@@ -55,7 +55,7 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-        //Softdeleting tenant
+        //Softdeleting tenant (shop associated with user)
         $tenant=$request->user()->tenant()->first();
 
         Auth::logout();
