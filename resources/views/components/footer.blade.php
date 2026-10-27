@@ -8,7 +8,7 @@
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/cookiespolicy.html') }}">Politika kolačića</a>
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/acceptableusepolicy.html') }}">Pravila prihvatljive upotrebe</a>
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/disclaimer.html') }}">Disclaimer</a>
-        <a class="sm:text-2xl  font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ route('firstpage') }}">Webshop DEMO</a>
+        <a class="sm:text-2xl  font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ route('firstpageDemo') }}">Webshop DEMO</a>
     </nav>
     <nav class="flex flex-col mt-[2rem] gap-[1rem]  lg:gap-[2rem] 2xl:gap-[3rem]">
         <p class="text-[1.5rem] md:text-3xl  lg:text-[2rem]  2xl:text-[3rem]">MODICA - software as service (SaaS)</p>

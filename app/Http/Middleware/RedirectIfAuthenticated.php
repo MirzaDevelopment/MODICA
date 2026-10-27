@@ -21,10 +21,16 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+            $tenant = auth()->user()->tenant()->first();
+            if (auth()->user()->role == "admin" | auth()->user()->role == "gost"  && $tenant != null) {
+            return redirect()->guest("{$tenant->slug}/prodavnica");
+        } else  {
+            return redirect()->guest("tenants");
+                //return redirect(RouteServiceProvider::HOME);
             }
         }
 
         return $next($request);
     }
+}
 }

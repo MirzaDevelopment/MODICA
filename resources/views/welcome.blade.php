@@ -215,7 +215,7 @@
 
         </div>
         <div class="sm:mt-[2rem]  xl:mt-0 min-w-[31%]">
-            <a class="text-gray-800 break-normal hover:text-gray-900 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl rounded-md relative group w-fit xl:leading-tight" href="{{ route('firstpage') }}">
+            <a class="text-gray-800 break-normal hover:text-gray-900 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl rounded-md relative group w-fit xl:leading-tight" href="{{ route('firstpageDemo') }}">
                 {{ __('Ulaz u online prodavnicu') }}
                 <span class="absolute top-[36px] left-0 lg:top-[3.5rem] xl:top-auto xl:left-5 w-0 h-[2px] lg:h-[3px] 2xl:h-[4px] bg-gray-800 transition-all group-hover:w-full"></span>
             </a>

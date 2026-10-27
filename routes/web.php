@@ -45,7 +45,12 @@ Route::get('/assets/{filename}', function ($filename) {
 });
 
 //Product first page route 
-Route::get('/prodavnica', function () {
+Route::get('/demo-prodavnica', function () {
+    return view('firstpageDemo');
+
+})->name('firstpageDemo');
+
+Route::get('{tenant}/prodavnica', function () {
     return view('firstpage');
 })->name('firstpage');
 
@@ -71,10 +76,10 @@ Route::get('/tenants', function () {
     return view('tenants');
 })->middleware(['auth', 'verified'])->name('tenants');
 
-
+Route::middleware('auth')->group(function () {
 Route::get('superadmin-edit', [ProfileController::class, 'superadminEdit'])->name('profile.superadminedit');
 Route::delete('superadmin-delete', [ProfileController::class, 'superadminDelete'])->name('profile.superadmindestroy');
-
+});
 
 /***Custom routes for tenants***/
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -85,7 +90,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     //Guest route
-    Route::get('{tenant}/dashboardusers', function () {
+    Route::get('{tenant}/upravljačka-ploča-korisnici', function () {
         if (auth()->user() && auth()->user()->role == "gost") {
             return view("dashboardusers");
         }

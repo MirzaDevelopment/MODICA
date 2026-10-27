@@ -17,8 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/prodavnica'; //Logged in users come here where clicked on login route after logged in (currently superadmin)
-    public const GUESTHOME = '/prodavnica';
+    public const HOME = '/{tenant}/prodavnica'; //Logged in users come here where clicked on login route after logged in (currently superadmin)
+    public const GUESTHOME = '/demo-prodavnica';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
