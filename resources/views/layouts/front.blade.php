@@ -34,7 +34,11 @@
         Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
     </noscript>
     <!-- Page header component -->
-    <x-header />
+        @if (request()->route('tenant'))
+        @include('components.header')
+        @else
+        @include('components.headerDemo')
+        @endif
     <!-- Page Content -->
     <main class="text-center">
         {{ $slot }}

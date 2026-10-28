@@ -72,12 +72,16 @@
                         <p>Korpa</p>
                     </div>
                 </div>
-                <a href="{{ route('google.login') }}" wire:navigate>
-                    <button class="border m-auto px-2 py-1 flex border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-                        <img class="w-6 h-6" src="{{ asset('storage/images/google-login.svg') }}" loading="lazy" alt="google logo">
-                        <span>Prijavi se sa Google</span>
-                    </button>
-                </a>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3">
+                        <a href="{{ route('google.login') }}" wire:navigate>
+                            <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/google-login.svg') }}" alt="google logo" width="25" height="25" loading="lazy">
+                        </a>
+                    </div>
+                    <div>
+                        <p>Prijavi se sa Google</p>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>

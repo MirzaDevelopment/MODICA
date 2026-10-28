@@ -47,7 +47,6 @@
                 <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/shop_male_1400x933.webp') }}">
                 <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2  w-full  h-640px" loading="lazy" src="{{ asset('storage/images/320x320/shop_male_320x213.webp') }}" width=320 height=213 alt="men_models">
             </picture>
-            </picture>
             <!--Navigation towards discounted items-->
             <span class="absolute top-[25px] text-7xl sm:text-8xl lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[25rem] text-white"><a href="/prodavnica#posebne-cijene">Top cijene</a></span>
         </div>
