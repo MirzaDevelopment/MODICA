@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Tenant;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -31,7 +32,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
 
-        
+        $slug = request()->segment(1);
+        $tenantId = Tenant::where('slug', $slug)->value('id');
+        dd($tenantId);
         $request->validate([
 
             'name' => ['required', 'string', 'max:255'],
@@ -47,6 +50,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'tenant_id'=>$tenantId,
         ]);
 
         $user->role = 'gost';

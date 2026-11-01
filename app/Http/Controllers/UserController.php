@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Session;
 
@@ -33,17 +34,20 @@ class UserController extends Controller
      */
     public function store(Request $request, User $user): RedirectResponse
     {
+        
         Gate::authorize('create', $user); //Authorisation for admin
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'tenant_id'=>Auth::user()->tenant()->first()->id,
         ]);
         
         $user->role = $request->role;

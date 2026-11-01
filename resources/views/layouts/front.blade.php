@@ -34,10 +34,12 @@
         Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
     </noscript>
     <!-- Page header component -->
-        @if (request()->route('tenant'))
-        @include('components.header')
+        @if (request()->route('tenant') && !Auth::check()) 
+        @include('components.headerUser')<!-- User header -->
+        @elseif(Auth::check() && Auth::user()->tenant()->exists()) 
+        @include('components.header') <!-- Tenant header -->
         @else
-        @include('components.headerDemo')
+        @include('components.headerDemo') <!-- Demo header with disabled login/register-->
         @endif
     <!-- Page Content -->
     <main class="text-center">
