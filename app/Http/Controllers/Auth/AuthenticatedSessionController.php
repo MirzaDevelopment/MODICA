@@ -13,14 +13,21 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * Display the login view for tenant
      */
     public function create(): View
     {
 
         return view('auth.login');
     }
+     /**
+     * Display the login view for user
+     */
+    public function createLoginUser(): View
+    {
 
+        return view('auth.loginuser');
+    }
     /**
      * Handle an incoming authentication request.
      */

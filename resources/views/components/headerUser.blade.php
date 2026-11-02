@@ -51,7 +51,7 @@
                 </div>
                 @else
                 <div class="flex flex-col gap-[0.5rem] items-center">
-                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('loginUser', ['tenant'=>request()->segment(1)])}}">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('loginuser', ['tenant'=>request()->segment(1)])}}">
                             <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/loginicon.svg') }}" alt="messages_icon" width="25" height="25">
                         </a></div>
                     <div>
@@ -136,7 +136,7 @@
                 @else
                 <div class="flex flex-col gap-[0.5rem] items-center">
 
-                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('loginUser',['tenant'=>request()->segment(1)])}}">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('loginuser',['tenant'=>request()->segment(1)])}}">
                             <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/loginicon.svg') }}" alt="messages_icon" width="25" height="25">
                         </a></div>
                     <div>
