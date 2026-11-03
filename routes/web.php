@@ -44,12 +44,13 @@ Route::get('/assets/{filename}', function ($filename) {
     abort(404);
 });
 
-//Product first page route 
+//Product first page route (DEMO)
 Route::get('/demo-prodavnica', function () {
     return view('firstpageDemo');
 
 })->name('firstpageDemo');
 
+//Product first page route 
 Route::get('{tenant}/prodavnica', function () {
     return view('firstpage');
 })->name('firstpage');
