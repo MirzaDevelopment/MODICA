@@ -34,7 +34,10 @@
         Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
     </noscript>
     <!-- Page header component -->
-        @if (request()->route('tenant') && !Auth::check()) 
+     
+        @if (request()->is("demo-prodavnica"))
+        @include('components.headerDemo') <!-- Demo header with disabled login/register-->
+        @elseif (request()->route('tenant') && !Auth::check())
         @include('components.headerUser')<!-- User header -->
         @elseif(Auth::check() && Auth::user()->tenant()->exists()) 
         @include('components.header') <!-- Tenant header -->

@@ -39,7 +39,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         if (auth()->user()->role == "admin" && $tenant != null) {
             return redirect()->guest("{$tenant->slug}/upravljačka-ploča");
-            //return redirect(RouteServiceProvider::HOME);
         } else if (auth()->user()->role == "superadmin") {
             return redirect()->guest("tenants");
         } else {

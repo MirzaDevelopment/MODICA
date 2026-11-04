@@ -26,7 +26,6 @@ class RedirectIfAuthenticated
             return redirect()->guest("{$tenant->slug}/prodavnica");
         } else  {
             return redirect()->guest("tenants");
-                //return redirect(RouteServiceProvider::HOME);
             }
         }
 
