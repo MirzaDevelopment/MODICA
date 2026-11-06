@@ -22,14 +22,10 @@
             font-family: Figtree, system-ui, sans-serif;
         }
     </style>
-
-
     <!-- Vite CSS only -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
 <body class="font-sans antialiased max-w-[1920px] m-auto">
-    <!-- Message for users with JavaScript disabled -->
     <noscript>
         Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
     </noscript>
