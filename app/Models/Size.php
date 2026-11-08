@@ -11,7 +11,7 @@ class Size extends Model
     use SoftDeletes, HasFactory;
     protected $table = 'category_sizes';
     protected $fillable = ['source',
-        'size', 'size_type',  
+        'size', 'size_type', 'tenant_id', 
     ];
 
     /***Variants table***/

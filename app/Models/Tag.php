@@ -12,7 +12,7 @@ class Tag extends Model
     use SoftDeletes, HasFactory;
     protected $table = 'category_tags';
     protected $fillable = ['source',
-        'tag',   
+        'tag', 'tenant_id',   
     ];
 
      /***Many to many relationship with product***/

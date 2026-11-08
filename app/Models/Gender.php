@@ -14,7 +14,7 @@ class Gender extends Model
     protected $table = 'category_genders';
 
     protected $fillable = ['source',
-        'gender',   
+        'gender', 'tenant_id'  
     ];
 
     /***Many to many relationship with product***/

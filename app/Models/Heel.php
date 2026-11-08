@@ -14,7 +14,7 @@ class Heel extends Model
     protected $table = 'heels';
 
     protected $fillable = ['source',
-        'heel_type',   
+        'heel_type',  'tenant_id' 
     ];
 
     /***One to one relationships***/

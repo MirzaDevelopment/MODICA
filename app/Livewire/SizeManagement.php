@@ -19,7 +19,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Auth;
 class SizeManagement extends Component
 {
     public string $numberPattern = "/^\d+$/";
@@ -85,18 +85,21 @@ class SizeManagement extends Component
                         'source' => 'user',
                         'size' => $sizes,
                         'size_type' => "shoe",
+                        'tenant_id'=>Auth::user()->tenant()->first()->id,
                     ]);
                 } else if (preg_match('/^[\p{L}]+$/u', $sizes)) {
                     Size::create([
                         'source' => 'user',
                         'size' => mb_strtoupper($sizes),
                         'size_type' => "clothing",
+                        'tenant_id'=>Auth::user()->tenant()->first()->id,
                     ]);
                 } else {
                     Size::create([
                         'source' => 'user',
                         'size' => $sizes,
                         'size_type' => "clothing",
+                        'tenant_id'=>Auth::user()->tenant()->first()->id,
                     ]);
                 }
             }

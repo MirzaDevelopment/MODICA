@@ -13,7 +13,7 @@ class Material extends Model
     protected $table = 'category_materials';
     
     protected $fillable = ['source',
-        'material',
+        'material','tenant_id',
 
     ];
 

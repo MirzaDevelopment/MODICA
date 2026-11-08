@@ -20,6 +20,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class ColorManagement extends Component
 {
@@ -74,7 +75,7 @@ class ColorManagement extends Component
     //Inserting category in db
     public function insertColor(): RedirectResponse
     {
-             //Creating array items with first letter as capital letter regardless of number of words.
+      //Creating array items with first letter as capital letter regardless of number of words.
       $this->tidyColors = array_map(function ($colors) {
             $colors = mb_strtolower(trim($colors));
             return mb_strtoupper(mb_substr($colors, 0, 1)) . mb_substr($colors, 1);
@@ -93,6 +94,7 @@ class ColorManagement extends Component
                         'source' => 'user',
                         'color' => $colors,
                         'hex_code' => $this->colorUserPicked[$key],
+                        'tenant_id'=>Auth::user()->tenant()->first()->id,
                     ]);
                     //If user didnt pick any color from input field, then null will be added in hex_code column. This is used when user wants to add Multicolored clothes, so title would not be associated with any color. 
                 } else {
@@ -100,6 +102,7 @@ class ColorManagement extends Component
                         'source' => 'user',
                         'color' => $colors,
                         'hex_code' => null,
+                        'tenant_id'=>Auth::user()->tenant()->first()->id,
                     ]);
                 }
             }

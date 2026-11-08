@@ -14,6 +14,7 @@ class Question extends Model
         'user_email',
         'question',
         'status',
+        'tenant_id',
         
     ];
 }
