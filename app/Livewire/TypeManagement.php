@@ -20,7 +20,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Auth;
 class TypeManagement extends Component
 {
 
@@ -77,6 +77,7 @@ class TypeManagement extends Component
                         Type::create([
                             'source' => 'user',
                             'type_name' => $types,
+                            'tenant_id'=>Auth::user()->tenant()->first()->id,
                         ]);
                     }
                     DB::commit();

@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class MaterialManagement extends Component
 {
@@ -78,6 +79,7 @@ class MaterialManagement extends Component
                         Material::create([
                             'source' => 'user',
                             'material' => $materials,
+                            'tenant_id'=>Auth::user()->tenant()->first()->id,
                         ]);
                     }
                     DB::commit();

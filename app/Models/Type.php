@@ -12,7 +12,7 @@ class Type extends Model
 
     protected $table = 'types';
     protected $fillable = ['source',
-        'type_name',
+        'type_name','tenant_id',
     ];
 
     /***One to one relationship***/

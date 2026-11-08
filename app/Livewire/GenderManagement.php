@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class GenderManagement extends Component
 {
@@ -78,6 +79,7 @@ class GenderManagement extends Component
                 Gender::create([
                     'source' => 'user',
                     'gender' => $genders,
+                    'tenant_id'=>Auth::user()->tenant()->first()->id,
                 ]);
             }
             DB::commit();

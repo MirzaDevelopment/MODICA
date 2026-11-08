@@ -19,7 +19,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Auth;
 class HeelManagement extends Component
 {
 
@@ -81,6 +81,7 @@ class HeelManagement extends Component
                         Heel::create([
                             'source' => 'user',
                             'heel_type' => $heels,
+                            'tenant_id'=>Auth::user()->tenant()->first()->id,
                         ]);
                     }
                     DB::commit();

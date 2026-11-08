@@ -12,7 +12,7 @@ class Color extends Model
 
     protected $table = 'category_colors';
     protected $fillable = ['source',
-        'color', 'hex_code',
+        'color', 'hex_code','tenant_id'
     ];
 
 
