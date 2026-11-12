@@ -17,6 +17,7 @@ class Tenant extends Model
         'slug',
         'logo_image_id',
         'cover_image_id',
+        'default_image_id',
         'currency',
         'phone',
         'shipping_provider',
