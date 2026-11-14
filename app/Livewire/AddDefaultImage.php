@@ -13,7 +13,9 @@ use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Models\Tenant;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Encoders\WebpEncoder;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Gate;
@@ -63,7 +65,8 @@ class AddDefaultImage extends Component
 //Small function for uploading an image which will be rendered when no appropriate image is found
 
 public function defaultImageUpload():?RedirectResponse
-{
+{   
+    $currentTenant=Auth::user()->tenant()->first(); //Needed for bind default image with tenant
     Gate::authorize('create', Image::class);
     if ($this->isUploading) {
         return null; // Prevent further submissions if already uploading
@@ -94,7 +97,7 @@ public function defaultImageUpload():?RedirectResponse
         $image_800x800->save(storage_path("app/public/images/800x800/{$defaultImageName}"));
         $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$defaultImageName}"));
         //Finally saving the path to database
-        $imageIdArray[] = Image::create([
+        $imageIdArray = Image::create([ //Was $imageIdArray[]
             'image_type'=>"default",
             'image_path' => $realPath, //Default image size
             'image_320x320' => 'images/320x320/' . $defaultImageName,
@@ -103,6 +106,11 @@ public function defaultImageUpload():?RedirectResponse
             'image_1200x1200' => 'images/1200x1200/' . $defaultImageName,
 
         ]);
+
+            //Inserting into tenant table
+             $currentTenant->update([
+                'default_image_id' =>  $imageIdArray->id //See if it works next time
+            ]);
         DB::commit();
         $this->isUploading = true;
         return redirect()->back()->with("statusDefault", "Zamjenska slika je uspješno učitana! Ova slika će se koristiti kada ne bude pronađena slika za odgovarajuću boju.");
