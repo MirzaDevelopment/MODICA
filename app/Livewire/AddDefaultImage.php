@@ -97,7 +97,7 @@ public function defaultImageUpload():?RedirectResponse
         $image_800x800->save(storage_path("app/public/images/800x800/{$defaultImageName}"));
         $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$defaultImageName}"));
         //Finally saving the path to database
-        $imageIdArray = Image::create([ //Was $imageIdArray[]
+        $imageIdArray = Image::create([ 
             'image_type'=>"default",
             'image_path' => $realPath, //Default image size
             'image_320x320' => 'images/320x320/' . $defaultImageName,
@@ -107,7 +107,7 @@ public function defaultImageUpload():?RedirectResponse
 
         ]);
 
-            //Inserting into tenant table
+            //Inserting/updating into tenant table
              $currentTenant->update([
                 'default_image_id' =>  $imageIdArray->id //See if it works next time
             ]);
