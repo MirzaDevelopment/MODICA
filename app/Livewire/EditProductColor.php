@@ -44,19 +44,25 @@ class EditProductColor extends Component
 
 
 
+
     public function mount(): void
     {
         //Mostly important to show the admin current product data
-       $this->newProduct = session("newProductModel");
-        
+        $this->newProduct = session("newProductModel");
+
         //For adding default stock value to new color
         $this->variantStocks = DB::table("products_variants")->where('product_id', $this->newProduct->id)->get();
         foreach ($this->variantStocks as $sizes) {
 
             $this->activeSizesId[] = $sizes->category_size_id;
         }
+        $tenant = auth()->user()->tenant;
+        $defaultImage = $tenant->default_image_id !== null
+            ? $tenant->defaultImage
+            : Image::where('image_320x320', 'like', '%default%')
+            ->orderBy('created_at', 'asc')
+            ->first();
 
-        $defaultImage = Image::where("image_320x320", 'like', "%default%")->orderBy("created_at", "desc")->first();
         if (!empty($defaultImage)) {
             $this->defaultImageId = $defaultImage->id;
         } else {

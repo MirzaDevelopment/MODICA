@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tenant extends Model
 {
-    use HasFactory; use SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $table = 'tenants';
 
-        protected $fillable = [
+    protected $fillable = [
         'tenant_name',
         'slug',
         'logo_image_id',
@@ -40,6 +41,21 @@ class Tenant extends Model
     public function product()
     {
         return $this->hasOne(Product::class)->withTimestamps();
+    }
+
+    public function defaultImage()
+    {
+        return $this->belongsTo(Image::class, 'default_image_id');
+    }
+
+    public function coverImage()
+    {
+        return $this->belongsTo(Image::class, 'cover_image_id');
+    }
+
+    public function logoImage()
+    {
+        return $this->belongsTo(Image::class, 'logo_image_id');
     }
 
     public function user()

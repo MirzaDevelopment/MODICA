@@ -13,7 +13,6 @@ use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Models\Tenant;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Encoders\WebpEncoder;
