@@ -209,6 +209,7 @@ class EditProductColor extends Component
                         ->value('category_image_id');
                 }
                 $obsoleteImageOnDisk = Image::find($imageId);
+               
                 foreach ($obsoleteImageOnDisk as $obsoleteImageOnDisk) {
                     if (Storage::disk('public')->exists($obsoleteImageOnDisk->image_320x320)) {
                         if (!str_contains($obsoleteImageOnDisk->image_path, 'default')) {
@@ -218,10 +219,10 @@ class EditProductColor extends Component
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_800x800);
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);
                         } else {
+                            
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_320x320);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_400x400);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_800x800);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);
+                            //Deleting default image leftover in db
+                            
                         }
                     }
                 }

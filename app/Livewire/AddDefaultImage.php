@@ -108,7 +108,7 @@ public function defaultImageUpload():?RedirectResponse
 
             //Inserting/updating into tenant table
              $currentTenant->update([
-                'default_image_id' =>  $imageIdArray->id //See if it works next time
+                'default_image_id' =>  $imageIdArray->id 
             ]);
         DB::commit();
         $this->isUploading = true;
