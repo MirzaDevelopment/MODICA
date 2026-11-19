@@ -41,6 +41,7 @@ class EditProductColor extends Component
     public bool $toggle;
     public int $defaultImageId; //An id of the default image which will be used for new colors until admin changes to correct one.
     public string $imagePath;
+    public array $existingImageIds;
 
 
 
@@ -49,6 +50,11 @@ class EditProductColor extends Component
     {
         //Mostly important to show the admin current product data
         $this->newProduct = session("newProductModel");
+        //Getting the current images for selected products (including default placeholder image).
+        $this->existingImageIds = DB::table('products_colors')
+            ->where('product_id', $this->newProduct->id)
+            ->pluck('category_image_id')
+            ->toArray();
 
         //For adding default stock value to new color
         $this->variantStocks = DB::table("products_variants")->where('product_id', $this->newProduct->id)->get();
@@ -56,6 +62,7 @@ class EditProductColor extends Component
 
             $this->activeSizesId[] = $sizes->category_size_id;
         }
+        //Getting apropriate logged in tenant
         $tenant = auth()->user()->tenant;
         $defaultImage = $tenant->default_image_id !== null
             ? $tenant->defaultImage
@@ -63,11 +70,11 @@ class EditProductColor extends Component
             ->orderBy('created_at', 'asc')
             ->first();
 
-        if (!empty($defaultImage)) {
+        /* if (!empty($defaultImage)) {
             $this->defaultImageId = $defaultImage->id;
         } else {
             return;
-        }
+        }*/ //Dunno if needed
         $this->imagePath = $defaultImage->image_path;
     }
 
@@ -199,15 +206,16 @@ class EditProductColor extends Component
                 });
                 //...getting color id
                 $idsColors = $sortedResultsColors->pluck('id')->toArray();
-
-                //Removing the leftover entries from category_images tables in database when color is removed
                 $colors = Color::whereIn('id', $idsColors)->get()->toArray();
-
-                foreach ($colors as $colorId) {
+                foreach ($colors as $colorPiece) {
                     $imageId[] = DB::table('products_colors')
-                        ->where('category_color_id', $colorId)
+                        ->where('category_color_id', $colorPiece)->whereIn('category_image_id', $this->existingImageIds)
                         ->value('category_image_id');
                 }
+
+                dd($imageId);
+
+                //Removing the leftover entries from category_images tables in database when color is removed
                 $obsoleteImageOnDisk = Image::find($imageId);
                 foreach ($obsoleteImageOnDisk as $obsoleteImageOnDiskPiece) {
                     if (Storage::disk('public')->exists($obsoleteImageOnDiskPiece->image_320x320)) {
@@ -220,7 +228,7 @@ class EditProductColor extends Component
                         } else {
                             Storage::disk('public')->delete($obsoleteImageOnDiskPiece->image_320x320);
                             //Deleting default image leftover in db
-                            
+
                         }
                     }
                 }
