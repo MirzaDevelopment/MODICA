@@ -209,18 +209,16 @@ class EditProductColor extends Component
                         ->value('category_image_id');
                 }
                 $obsoleteImageOnDisk = Image::find($imageId);
-               
-                foreach ($obsoleteImageOnDisk as $obsoleteImageOnDisk) {
-                    if (Storage::disk('public')->exists($obsoleteImageOnDisk->image_320x320)) {
-                        if (!str_contains($obsoleteImageOnDisk->image_path, 'default')) {
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_path);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_320x320);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_400x400);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_800x800);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);
+                foreach ($obsoleteImageOnDisk as $obsoleteImageOnDiskPiece) {
+                    if (Storage::disk('public')->exists($obsoleteImageOnDiskPiece->image_320x320)) {
+                        if (!str_contains($obsoleteImageOnDiskPiece->image_path, 'default')) {
+                            Storage::disk('public')->delete($obsoleteImageOnDiskPiece->image_path);
+                            Storage::disk('public')->delete($obsoleteImageOnDiskPiece->image_320x320);
+                            Storage::disk('public')->delete($obsoleteImageOnDiskPiece->image_400x400);
+                            Storage::disk('public')->delete($obsoleteImageOnDiskPiece->image_800x800);
+                            Storage::disk('public')->delete($obsoleteImageOnDiskPiece->image_1200x1200);
                         } else {
-                            
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_320x320);
+                            Storage::disk('public')->delete($obsoleteImageOnDiskPiece->image_320x320);
                             //Deleting default image leftover in db
                             
                         }
