@@ -1,4 +1,5 @@
 <!--Header component used in pages-->
+
 <header class="mx-auto py-6 px-4 sm:px-6 w-fit lg:px-8">
     <img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" fetchpriority="high" alt="web_shop_logo" width="300" height="200" class=" sm:w-[300px] sm:h-[100px] lg:w-[600px] lg:h-[200px] 2xl:w-[900px] 2xl:h-[300px]">
     <nav class="flex flex-row mt-[0.5rem] mb-[0.5rem]  2xl:mt-[0rem] 2xl:mb-[0rem] lg:flex-row-reverse flex-wrap" x-data="{ open: false }">
@@ -7,7 +8,7 @@
             <div class="flex flex-col md:flex-row md:items-end gap-1 lg:gap-5 xl:gap-6 lg:mt-6  xl:mt-6 2xl:gap-8 mt-[1rem] 2xl:mt-12 2xl:mb-[1.5rem] " x-show="open" x-transition>
                 @if(Auth::user() && Auth::user()->role=="admin")
                 <div>
-                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboard', ['tenant'=>session('tenantSlug')]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <div class="flex flex-row gap-2">
                     <form method="POST" action="{{ route('logout') }}">
@@ -29,7 +30,7 @@
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers',['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers',['tenant'=>session('tenantSlug')]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <div class="flex flex-row gap-2">
                     <form method="POST" action="{{ route('logout') }}">
@@ -89,7 +90,7 @@
             <div class="flex flex-row gap-1 lg:gap-5 xl:gap-6  xl:mt-6  2xl:gap-8  items-end  2xl:mb-[1.5rem]">
                 @if(Auth::user() && Auth::user()->role=="admin")
                 <div>
-                    <p class="text-xl  lg:text-4xl text-gray-800">Dobrodošli natrag, <a class=" text-gray-800  " href="{{ route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl text-gray-800">Dobrodošli natrag, <a class=" text-gray-800  " href="{{ route('dashboard', ['tenant'=>session('tenantSlug')]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <div class="flex flex-row gap-2">
                     <form method="POST" action="{{ route('logout') }}">
@@ -112,7 +113,7 @@
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers',['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers',['tenant'=>session('tenantSlug')]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <div class="flex flex-row gap-2">
                     <form method="POST" action="{{ route('logout') }}">

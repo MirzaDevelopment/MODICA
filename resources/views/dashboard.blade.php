@@ -1,6 +1,6 @@
 <x-app-layout><!--Admin Dashboard view-->
     <x-slot name="header"> <!--This comes from the app.blade layout in layouts folder. Its not a separated component like in front layout-->
-        <a class="flex flex-row-reverse" href="{{ route('questions', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate><span class="text-[#22c55e] ml-[5px]">@if($questionsCount)<div class="relative inline-block">
+        <a class="flex flex-row-reverse" href="{{ route('questions', ['tenant'=>session('tenantSlug')]) }}" wire:navigate><span class="text-[#22c55e] ml-[5px]">@if($questionsCount)<div class="relative inline-block">
                     <!-- Message notification icon and pulsating circle -->
                     <button class="p-2 text-gray-600 bg-gray-100 rounded-full hover:bg-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
@@ -32,7 +32,7 @@
         <nav class="p-6 gap-4 grid grid-cols-2 md:grid-cols-3 xl:grid lg:grid-cols-3 justify-center bg-white overflow-hidden shadow-sm sm:rounded-b-lg">
             <!--Category management-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('categories', ['tenant'=>Auth::user()->tenant()->first()->slug])}}" wire:navigate>
+                <a href="{{ route('categories', ['tenant'=>session('tenantSlug')])}}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -48,7 +48,7 @@
             </div>
             <!--Add Products-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('addproduct', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
+                <a href="{{ route('addproduct', ['tenant'=>session('tenantSlug')]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -60,7 +60,7 @@
             </div>
             <!--Show and modify Products-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('products', ['tenant'=>Auth::user()->tenant()->first()->slug])}}" wire:navigate>
+                <a href="{{ route('products', ['tenant'=>session('tenantSlug')])}}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -74,7 +74,7 @@
             </div>
             <!--Delete Products-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('deleted-products', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
+                <a href="{{ route('deleted-products', ['tenant'=>session('tenantSlug')]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -94,7 +94,7 @@
         <nav class="p-6 gap-4 grid grid-cols-2 md:grid-cols-3  xl:grid lg:grid-cols-3 justify-center bg-white overflow-hidden shadow-sm sm:rounded-b-lg">
             <!--Add users-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('adduser',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
+                <a href="{{ route('adduser',['tenant'=>session('tenantSlug')]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -108,7 +108,7 @@
             </div>
             <!--Show and modify users-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('users',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
+                <a href="{{ route('users',['tenant'=>session('tenantSlug')]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -121,7 +121,7 @@
             </div>
             <!--Delete users-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('deleted-users',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
+                <a href="{{ route('deleted-users',['tenant'=>session('tenantSlug')]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

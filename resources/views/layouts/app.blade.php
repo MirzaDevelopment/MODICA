@@ -23,8 +23,15 @@
 </head>
 
 <body class="font-sans antialiased">
+    @php
+    if (Auth::check() && !session()->has('tenantSlug')) {
+        session([
+            'tenantSlug' => Auth::user()->tenant()->first()->slug
+        ]);
+    }
+@endphp
     <div class="min-h-screen bg-slate-100">
-        @if (Auth::user()->tenant()->first())
+        @if (session()->has('tenantSlug'))
         @include('layouts.navigation')
         @else
         @include('layouts.navigationsuperadmin')
