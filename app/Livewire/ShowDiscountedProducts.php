@@ -29,8 +29,9 @@ class ShowDiscountedProducts extends Component
     public function mount(): void
     {
         if (auth()->user()) {
-            $wishListproduct = Wishlist::where("user_id", auth()->user()->id)->get();
-            foreach ($wishListproduct as $wishlistItem) {
+            $wishListProduct =  session("wishListProduct");
+          //  $wishListproduct = Wishlist::where("user_id", auth()->user()->id)->get();
+            foreach ($wishListProduct as $wishlistItem) {
                 $this->wishListArray[] = $wishlistItem->product_id;
             }
         }

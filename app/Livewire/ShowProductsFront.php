@@ -45,8 +45,9 @@ class ShowProductsFront extends Component
     public function mount(): void
     {
         if (auth()->user()) {
-            $wishListproduct = Wishlist::where("user_id", auth()->user()->id)->get();
-            foreach ($wishListproduct as $wishlistItem) {
+            $wishListProduct = Wishlist::where("user_id", auth()->user()->id)->get();
+            session(['wishListProduct' => $wishListProduct]);
+            foreach ($wishListProduct as $wishlistItem) {
                 $this->wishListArray[] = $wishlistItem->product_id;
             }
         }
