@@ -64,6 +64,7 @@ class EditProductColor extends Component
         }
         //Getting apropriate logged in tenant
         $tenant = auth()->user()->tenant;
+        session(['tenantSlug' => $tenant]);//To prevent duplicates in view
         $defaultImage = $tenant->default_image_id !== null
             ? $tenant->defaultImage
             : Image::where('image_320x320', 'like', '%default%')

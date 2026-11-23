@@ -159,7 +159,7 @@
             <hr class="border-t-1 row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
             </hr>
             <!--Buy button-->
-          <button type="button" wire:click="buyProduct" class="text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 
+            <button type="button" wire:click="buyProduct" class="text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 
            font-semibold tracking-wide text-base 
            p-2.5 w-[25%] 
            rounded-lg 

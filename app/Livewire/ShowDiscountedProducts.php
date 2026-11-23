@@ -30,15 +30,12 @@ class ShowDiscountedProducts extends Component
     {
         if (auth()->user()) {
             $wishListProduct =  session("wishListProduct");
-          //  $wishListproduct = Wishlist::where("user_id", auth()->user()->id)->get();
             foreach ($wishListProduct as $wishlistItem) {
                 $this->wishListArray[] = $wishlistItem->product_id;
             }
         }
         $this->currentDate = Carbon::today();
     }
-
-
 
 
     //Adding item to wishlist

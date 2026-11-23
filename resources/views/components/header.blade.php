@@ -1,5 +1,4 @@
 <!--Header component used in pages-->
-
 <header class="mx-auto py-6 px-4 sm:px-6 w-fit lg:px-8">
     <img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" fetchpriority="high" alt="web_shop_logo" width="300" height="200" class=" sm:w-[300px] sm:h-[100px] lg:w-[600px] lg:h-[200px] 2xl:w-[900px] 2xl:h-[300px]">
     <nav class="flex flex-row mt-[0.5rem] mb-[0.5rem]  2xl:mt-[0rem] 2xl:mb-[0rem] lg:flex-row-reverse flex-wrap" x-data="{ open: false }">
