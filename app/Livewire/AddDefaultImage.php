@@ -37,7 +37,7 @@ class AddDefaultImage extends Component
 
         $rules = [
 
-            'defaultImage'=> 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:1024|dimensions:min_width=15,min_height=15,max_width=1200,max_height=1200'
+            'defaultImage'=> 'required|image|mimes:jpeg,png,jpg,gif,webp|max:1024|dimensions:min_width=15,min_height=15,max_width=1200,max_height=1200'
         ];
 
 
@@ -51,7 +51,7 @@ class AddDefaultImage extends Component
         //Default image upload validation messages
         'defaultImage.required' => 'Odaberite zamjensku sliku za proizvod.',
         'defaultImage.image' => 'Odabrana pogrešna datoteka! Datoteka mora biti slika.',
-        'defaultImage.mimes' => 'Odabrana pogrešna vrsta datoteke! Datoteka mora biti slika u formatu: jpeg, webp, png, jpg, gif, svg.',
+        'defaultImage.mimes' => 'Odabrana pogrešna vrsta datoteke! Datoteka mora biti slika u formatu: jpeg, webp, png, jpg, gif,',
         'defaultImage.max' => 'Pogrešna veličina slike! Veličina slike mora biti manja od 1 megabajta.',
         'defaultImage.dimensions' => 'Pogrešne dimenzije slike! Dimenzije slike moraju biti između 320x320 and 1200x1200.',
 
@@ -77,11 +77,10 @@ public function defaultImageUpload():?RedirectResponse
     try {
         $path = ($this->defaultImage);
         $manager = new ImageManager(Driver::class);
-        $extensions = [".jpg", ".jpeg", ".png", ".svg", ".gif"];
+        $extensions = [".jpg", ".jpeg", ".png",".gif"];
         $RawName = $path->getClientOriginalName();
         $defaultImageName = "default" . ".webp";
         //Store the original default size image
-        //$realPath = $path->store("images", "public");
         $realPath = $path->storeAs('images', $defaultImageName, 'public');
         $webPname = str_replace($extensions, ".webp", $RawName);
         //Hash the new resized name

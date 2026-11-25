@@ -70,12 +70,6 @@ class EditProductColor extends Component
             : Image::where('image_320x320', 'like', '%default%')
             ->orderBy('created_at', 'asc')
             ->first();
-
-        /* if (!empty($defaultImage)) {
-            $this->defaultImageId = $defaultImage->id;
-        } else {
-            return;
-        }*/ //Dunno if needed
         $this->imagePath = $defaultImage->image_path;
     }
 
@@ -213,8 +207,6 @@ class EditProductColor extends Component
                         ->where('category_color_id', $colorPiece)->whereIn('category_image_id', $this->existingImageIds)
                         ->value('category_image_id');
                 }
-
-                dd($imageId);
 
                 //Removing the leftover entries from category_images tables in database when color is removed
                 $obsoleteImageOnDisk = Image::find($imageId);
