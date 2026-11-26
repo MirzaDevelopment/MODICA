@@ -77,13 +77,9 @@ public function defaultImageUpload():?RedirectResponse
     try {
         $path = ($this->defaultImage);
         $manager = new ImageManager(Driver::class);
-        $extensions = [".jpg", ".jpeg", ".png",".gif"];
-        $RawName = $path->getClientOriginalName();
         $defaultImageName = "default" . ".webp";
         //Store the original default size image
         $realPath = $path->storeAs('images', $defaultImageName, 'public');
-        $webPname = str_replace($extensions, ".webp", $RawName);
-        //Hash the new resized name
         //Using intervention package to resize and encode to webP
         $image_320x320 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 320)->encode(new WebpEncoder(quality: 80));
         $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
