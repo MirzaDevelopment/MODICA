@@ -31,6 +31,7 @@ class EditProductColor extends Component
 
 
     public bool $isUploading = false;
+    public object $tenant;
     public array $activeColors = [];
     public array $activeSizesId = [];
     public object $variantStocks;
@@ -63,11 +64,11 @@ class EditProductColor extends Component
             $this->activeSizesId[] = $sizes->category_size_id;
         }
         //Getting apropriate logged in tenant
-        $tenant = auth()->user()->tenant;
-        session(['tenantSlug' => $tenant]);//To prevent duplicates in view
-        $defaultImage = $tenant->default_image_id !== null
-            ? $tenant->defaultImage
-            : Image::where('image_320x320', 'like', '%default%')
+        $this->tenant = auth()->user()->tenant;
+        session(['tenantSlug' => $this->tenant]);//To prevent duplicates in view
+        $defaultImage = $this->tenant->default_image_id !== null
+            ? $this->tenant->defaultImage
+            : Image::where('image_320x320', 'like', '%'.$this->tenant->slug.'%')
             ->orderBy('created_at', 'asc')
             ->first();
         $this->imagePath = $defaultImage->image_path;
@@ -153,9 +154,9 @@ class EditProductColor extends Component
                 foreach ($idsColors as $key => $idsColors) {
 
                     //Image is copied to the same path but with different name
-                    $defaultImageName = "default" . $key . ".webp";
+                    $defaultImageName = "default-". $this->tenant->slug. $key . ".webp";
 
-                    $originalImagePath = storage_path('app/public/images/320x320/default.webp');
+                    $originalImagePath = storage_path('app/public/images/320x320/default-'.$this->tenant->slug.'.webp');
 
 
                     $newImagePath = storage_path('app/public/images/320x320/' . $defaultImageName);

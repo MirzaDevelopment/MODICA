@@ -66,6 +66,7 @@ class AddDefaultImage extends Component
 public function defaultImageUpload():?RedirectResponse
 {   
     $currentTenant=Auth::user()->tenant()->first(); //Needed for bind default image with tenant
+    $currentTenantSlug=$currentTenant->slug;
     Gate::authorize('create', Image::class);
     if ($this->isUploading) {
         return null; // Prevent further submissions if already uploading
@@ -77,7 +78,7 @@ public function defaultImageUpload():?RedirectResponse
     try {
         $path = ($this->defaultImage);
         $manager = new ImageManager(Driver::class);
-        $defaultImageName = "default" . ".webp";
+        $defaultImageName = "default-" .$currentTenantSlug.".webp";
         //Store the original default size image
         $realPath = $path->storeAs('images', $defaultImageName, 'public');
         //Using intervention package to resize and encode to webP
